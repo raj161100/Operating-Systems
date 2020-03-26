@@ -1,23 +1,30 @@
 #include<stdio.h>
-#include <stdlib.h>
-struct process{
-	int priority;
-	int burst_time;
-	int pid;
-	int waiting_time;
-	int turnaround_time;
-	int remaining_time;
-	int arrival_time;
-};
-void getInput();
-void calcWaitingTime(struct process *q,int);
-void calcTurnAroundTime(struct process *q,int);
-void printQueue(struct process *q,int size);
-void RoundRobin();
-void PrioSorting();
-void FCFS();
-void printQueueI(struct process);
-void printQueue(struct process *,int);
+#include<conio.h>
+
+struct process
+{
+      int arrival_time, burst_time, current_time, wait_time, turnaround_time, priority,status;
+}process_queue[10];
+
+int no_of_process;
+
+void Sorting_of_Arrival_Time()
+{
+      struct process temp;
+      int i, j;
+      for(i = 0; i < no_of_process - 1; i++)
+      {
+            for(j = i + 1; j < no_of_process; j++)
+            {
+                  if(process_queue[i].arrival_time > process_queue[j].arrival_time)
+                  {
+                        temp = process_queue[i];
+                        process_queue[i] = process_queue[j];
+                        process_queue[j] = temp;
+                  }
+            }
+      }
+}
 int main()
 {
       printf("\nPress 1 for Round Robin Scheduling");
